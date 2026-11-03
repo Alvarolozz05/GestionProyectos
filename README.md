@@ -1,1 +1,2 @@
 # Plataforma de Gestión de Proyectos Colaborativos
+Plataforma de gestión de proyectos colaborativos donde los usuarios pueden crear proyectos y asignar a otros usuarios a trabajar en ellos con distintos roles.
