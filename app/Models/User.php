@@ -14,19 +14,25 @@ use Illuminate\Notifications\Notifiable;
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
-    /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
     protected function casts(): array
     {
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    // Proyectos creados por el usuario
+    public function projects(): HasMany
+    {
+        return $this->hasMany(Project::class);
+    }
+
+    // Proyectos en los que participa el usuario
+    public function participatingProjects(): BelongsToMany
+    {
+        return $this->belongsToMany(Project::class)->withPivot('role', 'contribution_hours')->withTimestamps();
     }
 }
