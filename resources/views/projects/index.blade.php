@@ -17,8 +17,15 @@
             <p>Estado: {{ $project->status }}</p>
 
             <a href="{{ route('projects.show', $project->id) }}">Ver proyecto</a>
-
             <a href="{{ route('projects.edit', $project->id) }}">Editar proyecto</a>
+
+            <br><br>
+            
+            <form action="{{ route('projects.destroy', $project->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit">Eliminar proyecto</button>
+            </form>
         </div>
         <hr>
     @endforeach
