@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>Listado de proyectos</title>
 </head>
 <body>

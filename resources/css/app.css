@@ -1,3 +1,210 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* =========================================
+   CONFIGURACIÓN GENERAL
+========================================= */
+
+@layer base {
+    body {
+        @apply bg-gray-100 text-gray-800 font-sans antialiased;
+    }
+
+    h1 {
+        @apply text-3xl font-bold text-gray-900 mb-6;
+    }
+
+    h2 {
+        @apply text-xl font-semibold text-gray-800 mb-4;
+    }
+
+    h3 {
+        @apply text-lg font-semibold text-gray-800;
+    }
+
+    h4 {
+        @apply text-base font-semibold text-gray-700;
+    }
+
+    p {
+        @apply text-gray-600 leading-relaxed mb-2;
+    }
+
+    hr {
+        @apply my-6 border-gray-200;
+    }
+}
+
+/* =========================================
+   CONTENEDORES
+========================================= */
+
+@layer base {
+
+    body>h1,
+    body>h2,
+    body>form,
+    body>a,
+    body>p,
+    body>div {
+        @apply mx-auto;
+    }
+
+    body {
+        @apply px-5 py-8;
+    }
+}
+
+/* =========================================
+   ENLACES
+========================================= */
+
+@layer base {
+    a {
+        @apply text-blue-600 font-medium hover:text-blue-800 transition-colors;
+    }
+
+    a[href*="create"] {
+        @apply inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors no-underline mb-5;
+    }
+
+    a[href*="show"],
+    a[href*="edit"] {
+        @apply inline-block text-sm mr-3;
+    }
+
+    a[href*="index"] {
+        @apply inline-block mt-5;
+    }
+}
+
+/* =========================================
+   FORMULARIOS
+========================================= */
+
+@layer base {
+    form {
+        @apply bg-white border border-gray-200 rounded-xl p-6 shadow-sm mb-5;
+    }
+
+    label {
+        @apply block text-sm font-semibold text-gray-700 mb-2;
+    }
+
+    input,
+    textarea,
+    select {
+        @apply w-full border border-gray-300 rounded-lg px-3 py-2 text-gray-800 bg-white outline-none transition-all;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+        @apply border-blue-500 ring-2 ring-blue-100;
+    }
+
+    textarea {
+        @apply min-h-28 resize-y;
+    }
+
+    input[type="number"],
+    input[type="date"] {
+        @apply cursor-pointer;
+    }
+
+    button {
+        @apply bg-blue-600 text-white font-semibold px-5 py-2 rounded-lg cursor-pointer hover:bg-blue-700 transition-colors;
+    }
+
+    button[type="submit"] {
+        @apply mt-4;
+    }
+
+    form button {
+        @apply w-auto;
+    }
+}
+
+/* =========================================
+   LISTADO DE PROYECTOS
+========================================= */
+
+@layer base {
+    body>div:has(> h2) {
+        @apply bg-white border border-gray-200 rounded-xl p-6 shadow-sm mb-5;
+    }
+
+    body>div:has(> h2) h2 {
+        @apply text-xl font-bold text-gray-900;
+    }
+}
+
+/* =========================================
+   DETALLES Y PARTICIPANTES
+========================================= */
+
+@layer base {
+    body>div:has(> h3) {
+        @apply bg-gray-50 border border-gray-200 rounded-lg p-5 my-4;
+    }
+
+    body>div:has(> h3) h3 {
+        @apply mb-3;
+    }
+
+    body>div:has(> h3) h4 {
+        @apply mt-5 mb-3;
+    }
+}
+
+/* =========================================
+   BOTONES DE ELIMINACIÓN
+========================================= */
+
+@layer base {
+    form button[type="submit"] {
+        @apply bg-blue-600 hover:bg-blue-700;
+    }
+
+    form[action*="destroy"] button {
+        @apply bg-red-600 hover:bg-red-700;
+    }
+}
+
+/* =========================================
+   MENSAJES DE SESIÓN
+========================================= */
+
+@layer base {
+    p[style*="red"] {
+        @apply bg-red-50 text-red-700 border border-red-200 rounded-lg p-3 mb-4;
+    }
+
+    p[style*="green"] {
+        @apply bg-green-50 text-green-700 border border-green-200 rounded-lg p-3 mb-4;
+    }
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 640px) {
+    body {
+        @apply px-3 py-5;
+    }
+
+    h1 {
+        @apply text-2xl;
+    }
+
+    body>div:has(> h2),
+    body>div:has(> h3),
+    form {
+        @apply p-4;
+    }
+
+    a[href*="show"],
+    a[href*="edit"] {
+        @apply mb-2;
+    }
+}

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
@@ -36,8 +37,11 @@ class ProjectController extends Controller
 
     public function show(string $id)
     {
-        $project = Project::findOrFail($id);
-        return view('projects.show', compact('project'));
+        $project = Project::with('participants')->findOrFail($id);
+        $assignedUserIds = $project->participants->pluck('id');
+        $users = User::whereNotIn('id', $assignedUserIds)->get();
+
+        return view('projects.show', compact('project', 'users'));
     }
 
     public function edit(string $id)
@@ -62,9 +66,6 @@ class ProjectController extends Controller
 
     public function destroy(string $id)
     {
-        // $project = Project::findOrFail($id);
-        // $project->delete();
-        // return redirect()->route('projects.index');
         $project = Project::findOrFail($id);
 
         if ($project->participants()->count() > 0) {
@@ -73,5 +74,43 @@ class ProjectController extends Controller
 
         $project->delete();
         return redirect()->route('projects.index')->with('success', 'Proyecto eliminado correctamente');
+    }
+
+    public function addParticipant(Request $request, string $id)
+    {
+        $project = Project::findOrFail($id);
+
+        $project->participants()->attach(
+            $request->input('user_id'),
+            [
+                'role' => $request->input('role'),
+                'contribution_hours' => $request->input('contribution_hours')
+            ]
+        );
+
+        return redirect()->route('projects.show', $id);
+    }
+
+    public function updateParticipant(Request $request, string $id, string $userId)
+    {
+        $project = Project::findOrFail($id);
+
+        $project->participants()->sync([
+            $userId => [
+                'role' => $request->input('role'),
+                'contribution_hours' => $request->input('contribution_hours')
+            ]
+        ], false);
+
+        return redirect()->route('projects.show', $id);
+    }
+
+    public function removeParticipant(string $id, string $userId)
+    {
+        $project = Project::findOrFail($id);
+
+        $project->participants()->detach($userId);
+
+        return redirect()->route('projects.show', $id);
     }
 }

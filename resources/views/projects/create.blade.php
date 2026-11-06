@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>Crear proyecto</title>
 </head>
 <body>
@@ -40,4 +41,4 @@
     
     <a href="{{ route('projects.index') }}">Volver al listado</a>
 </body>
-</html>
+</html> 
