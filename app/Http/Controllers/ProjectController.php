@@ -62,8 +62,16 @@ class ProjectController extends Controller
 
     public function destroy(string $id)
     {
+        // $project = Project::findOrFail($id);
+        // $project->delete();
+        // return redirect()->route('projects.index');
         $project = Project::findOrFail($id);
+
+        if ($project->participants()->count() > 0) {
+            return redirect()->route('projects.index')->with('error', 'No se puede eliminar el proyecto porque tiene usuarios asociados');
+        }
+
         $project->delete();
-        return redirect()->route('projects.index');
+        return redirect()->route('projects.index')->with('success', 'Proyecto eliminado correctamente');
     }
 }

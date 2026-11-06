@@ -7,6 +7,18 @@
 <body>
     <h1>Listado de proyectos</h1>
 
+    @if (session('error'))
+        <p style="color: red;">
+            {{ session('error') }}
+        </p>
+    @endif
+
+    @if (session('success'))
+        <p style="color: green;">
+            {{ session('success') }}
+        </p>
+    @endif
+
     <a href="{{ route('projects.create') }}">Crear proyecto</a>
 
     @foreach ($projects as $project)
