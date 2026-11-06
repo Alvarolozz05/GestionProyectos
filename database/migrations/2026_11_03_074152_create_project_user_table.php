@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('role');
             $table->decimal('contribution_hours', 8, 2)->default(0);
             $table->timestamps();
+            $table->unique(['project_id', 'user_id']);
         });
     }
 

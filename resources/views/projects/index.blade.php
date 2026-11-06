@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de proyectos</title>
+</head>
+<body>
+    <h1>Listado de proyectos</h1>
+
+    <a href="{{ route('projects.create') }}">Crear proyecto</a>
+
+    @foreach ($projects as $project)
+        <div>
+            <h2>{{ $project->title }}</h2>
+            <p>{{ $project->description }}</p>
+            <p>Fecha límite: {{ $project->due_date }}</p>
+            <p>Estado: {{ $project->status }}</p>
+
+            <a href="{{ route('projects.show', $project->id) }}">Ver proyecto</a>
+
+            <a href="{{ route('projects.edit', $project->id) }}">Editar proyecto</a>
+        </div>
+        <hr>
+    @endforeach
+</body>
+</html>

@@ -1,8 +1,9 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Project extends Model
 {
@@ -22,6 +23,6 @@ class Project extends Model
     // Usuarios participantes del proyecto
     public function participants(): BelongsToMany
     {
-        return $this-belongsToMany('role', 'contribution_hours')->withTimestamps();
+        return $this->belongsToMany(User::class, 'project_user')->withPivot('role', 'contribution_hours')->withTimestamps();
     }
 }
