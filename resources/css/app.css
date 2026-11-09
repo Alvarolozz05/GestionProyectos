@@ -5,52 +5,37 @@
 ========================================= */
 
 @layer base {
+    * {
+        box-sizing: border-box;
+    }
+
     body {
-        @apply bg-gray-100 text-gray-800 font-sans antialiased;
+        @apply min-h-screen bg-slate-100 text-slate-700 font-sans antialiased;
+        padding: 40px;
     }
 
     h1 {
-        @apply text-3xl font-bold text-gray-900 mb-6;
+        @apply text-3xl font-bold text-slate-900 mb-8;
     }
 
     h2 {
-        @apply text-xl font-semibold text-gray-800 mb-4;
+        @apply text-xl font-bold text-slate-800 mb-4;
     }
 
     h3 {
-        @apply text-lg font-semibold text-gray-800;
+        @apply text-lg font-bold text-slate-800 mb-3;
     }
 
     h4 {
-        @apply text-base font-semibold text-gray-700;
+        @apply text-sm font-bold text-slate-700 mb-3;
     }
 
     p {
-        @apply text-gray-600 leading-relaxed mb-2;
+        @apply text-sm text-slate-600 leading-relaxed mb-3;
     }
 
     hr {
-        @apply my-6 border-gray-200;
-    }
-}
-
-/* =========================================
-   CONTENEDORES
-========================================= */
-
-@layer base {
-
-    body>h1,
-    body>h2,
-    body>form,
-    body>a,
-    body>p,
-    body>div {
-        @apply mx-auto;
-    }
-
-    body {
-        @apply px-5 py-8;
+        @apply my-8 border-slate-200;
     }
 }
 
@@ -60,20 +45,28 @@
 
 @layer base {
     a {
-        @apply text-blue-600 font-medium hover:text-blue-800 transition-colors;
+        @apply inline-block text-indigo-600 font-semibold text-sm no-underline transition-all duration-200;
+    }
+
+    a:hover {
+        @apply text-indigo-800;
     }
 
     a[href*="create"] {
-        @apply inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors no-underline mb-5;
+        @apply bg-indigo-600 text-white px-5 py-3 rounded-lg shadow-sm;
+    }
+
+    a[href*="create"]:hover {
+        @apply bg-indigo-700 text-white -translate-y-0.5;
     }
 
     a[href*="show"],
     a[href*="edit"] {
-        @apply inline-block text-sm mr-3;
+        @apply mr-3;
     }
 
     a[href*="index"] {
-        @apply inline-block mt-5;
+        @apply mt-5;
     }
 }
 
@@ -83,76 +76,123 @@
 
 @layer base {
     form {
-        @apply bg-white border border-gray-200 rounded-xl p-6 shadow-sm mb-5;
+        @apply bg-white border border-slate-200 rounded-xl p-6 shadow-sm mb-6;
     }
 
     label {
-        @apply block text-sm font-semibold text-gray-700 mb-2;
+        @apply block text-sm font-semibold text-slate-700 mb-2;
     }
 
     input,
     textarea,
     select {
-        @apply w-full border border-gray-300 rounded-lg px-3 py-2 text-gray-800 bg-white outline-none transition-all;
+        @apply block w-full border border-slate-300 rounded-lg px-4 py-3 text-sm text-slate-800 bg-white outline-none transition-all duration-200;
     }
 
     input:focus,
     textarea:focus,
     select:focus {
-        @apply border-blue-500 ring-2 ring-blue-100;
+        @apply border-indigo-500 ring-4 ring-indigo-100;
     }
 
     textarea {
-        @apply min-h-28 resize-y;
+        @apply min-h-32 resize-y;
     }
 
-    input[type="number"],
-    input[type="date"] {
+    input[type="date"],
+    input[type="number"] {
+        @apply cursor-pointer;
+    }
+
+    select {
         @apply cursor-pointer;
     }
 
     button {
-        @apply bg-blue-600 text-white font-semibold px-5 py-2 rounded-lg cursor-pointer hover:bg-blue-700 transition-colors;
+        @apply inline-block bg-indigo-600 text-white font-semibold text-sm px-5 py-3 rounded-lg cursor-pointer transition-all duration-200 shadow-sm;
+    }
+
+    button:hover {
+        @apply bg-indigo-700 -translate-y-0.5;
+    }
+
+    button:active {
+        @apply translate-y-0;
     }
 
     button[type="submit"] {
         @apply mt-4;
     }
+}
 
-    form button {
-        @apply w-auto;
+/* =========================================
+   CONTENEDORES DE PROYECTOS
+========================================= */
+
+@layer base {
+    body>div {
+        @apply bg-white border border-slate-200 rounded-xl p-6 shadow-sm mb-6;
+    }
+
+    body>div h2,
+    body>div h3 {
+        @apply text-slate-900;
+    }
+
+    body>div p {
+        @apply mb-2;
     }
 }
 
 /* =========================================
-   LISTADO DE PROYECTOS
+   FORMULARIOS PRINCIPALES
 ========================================= */
 
 @layer base {
-    body>div:has(> h2) {
-        @apply bg-white border border-gray-200 rounded-xl p-6 shadow-sm mb-5;
+    body>form {
+        @apply max-w-2xl mx-auto;
     }
 
-    body>div:has(> h2) h2 {
-        @apply text-xl font-bold text-gray-900;
+    body>h1 {
+        @apply max-w-2xl mx-auto;
+    }
+
+    body>form label {
+        @apply mt-4;
+    }
+
+    body>form button {
+        @apply w-full mt-6;
     }
 }
 
 /* =========================================
-   DETALLES Y PARTICIPANTES
+   DETALLES DEL PROYECTO
 ========================================= */
 
 @layer base {
+    body>p {
+        @apply max-w-4xl mx-auto;
+    }
+
+    body>h1 {
+        @apply max-w-4xl mx-auto;
+    }
+
+    body>hr {
+        @apply max-w-4xl mx-auto;
+    }
+
+    body>h2 {
+        @apply max-w-4xl mx-auto mt-8;
+    }
+
     body>div:has(> h3) {
-        @apply bg-gray-50 border border-gray-200 rounded-lg p-5 my-4;
-    }
-
-    body>div:has(> h3) h3 {
-        @apply mb-3;
+        @apply max-w-4xl mx-auto bg-slate-50 border border-slate-200 rounded-xl p-6 mb-6;
     }
 
     body>div:has(> h3) h4 {
-        @apply mt-5 mb-3;
+        @apply mt-6;
     }
 }
 
@@ -161,12 +201,34 @@
 ========================================= */
 
 @layer base {
-    form button[type="submit"] {
-        @apply bg-blue-600 hover:bg-blue-700;
+    form:has(input[name="_method"][value="DELETE"]) button {
+        @apply bg-red-600 text-white;
     }
 
-    form[action*="destroy"] button {
-        @apply bg-red-600 hover:bg-red-700;
+    form:has(input[name="_method"][value="DELETE"]) button:hover {
+        @apply bg-red-700;
+    }
+}
+
+/* =========================================
+   CIERRE DE SESIÓN
+========================================= */
+
+@layer base {
+    form[action*="logout"] {
+        all: unset;
+        display: block;
+        margin: 0 0 24px auto;
+        width: fit-content;
+    }
+
+    form[action*="logout"] button {
+        all: unset;
+        @apply inline-block bg-slate-800 text-white text-sm font-semibold px-5 py-3 rounded-lg cursor-pointer transition-all duration-200;
+    }
+
+    form[action*="logout"] button:hover {
+        @apply bg-slate-950 -translate-y-0.5;
     }
 }
 
@@ -176,11 +238,11 @@
 
 @layer base {
     p[style*="red"] {
-        @apply bg-red-50 text-red-700 border border-red-200 rounded-lg p-3 mb-4;
+        @apply max-w-4xl bg-red-50 text-red-700 border border-red-200 rounded-lg p-4 mb-5;
     }
 
     p[style*="green"] {
-        @apply bg-green-50 text-green-700 border border-green-200 rounded-lg p-3 mb-4;
+        @apply max-w-4xl bg-green-50 text-green-700 border border-green-200 rounded-lg p-4 mb-5;
     }
 }
 
@@ -188,62 +250,46 @@
    RESPONSIVE
 ========================================= */
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
     body {
-        @apply px-3 py-5;
+        @apply px-4 py-6;
     }
 
     h1 {
         @apply text-2xl;
     }
 
-    body>div:has(> h2),
-    body>div:has(> h3),
-    form {
-        @apply p-4;
+    body>div {
+        @apply p-5;
     }
 
-    a[href*="show"],
-    a[href*="edit"] {
+    body>form {
+        @apply p-5;
+    }
+
+    body>div a {
         @apply mb-2;
+    }
+
+    form[action*="logout"] {
+        margin-left: 0;
     }
 }
 
-/* =========================================
-   CIERRE DE SESIÓN - PÁGINA PRINCIPAL
-========================================= */
-
-@layer base {
-    .logout-form {
-        all: unset;
-        display: block;
-        margin: 0;
-        padding: 0;
-        background: transparent;
-        border: none;
-        box-shadow: none;
+@media (max-width: 480px) {
+    body {
+        @apply px-3 py-5;
     }
 
-    .logout-form .logout-button {
-        all: unset;
-        box-sizing: border-box;
-        display: inline-block;
-        padding: 11px 20px;
-        border: 1px solid #7f1d1d;
-        border-radius: 8px;
-        color: #fecaca;
-        background: #450a0a;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 14px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.2s ease;
+    h1 {
+        @apply text-xl;
     }
 
-    .logout-form .logout-button:hover {
-        color: #ffffff;
-        background: #991b1b;
-        border-color: #ef4444;
-        transform: translateY(-2px);
+    button {
+        @apply w-full;
+    }
+
+    body>div a {
+        @apply mb-3;
     }
 }
