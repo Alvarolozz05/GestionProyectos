@@ -22,7 +22,10 @@
 
     <a href="{{ route('projects.create') }}">Crear proyecto</a>
 
-    <a href="{{ route('projects.create') }}">Cerrar sesión</a>
+    <form action="{{ route('logout') }}" method="POST">
+        @csrf
+        <button type="submit">Cerrar sesión</button>
+    </form>
 
     @foreach ($projects as $project)
         <div>

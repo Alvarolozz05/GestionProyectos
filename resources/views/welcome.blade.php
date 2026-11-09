@@ -149,11 +149,6 @@
                         <a href="{{ url('/projects') }}">
                             Proyectos
                         </a>
-
-                        <form method="POST" action="{{ route('logout') }}" class="logout-form">
-                            @csrf
-                            <button type="submit" class="logout-button">Cerrar sesión</button>
-                        </form>
                     @else
                         <a href="{{ route('login') }}">
                             Iniciar sesión
