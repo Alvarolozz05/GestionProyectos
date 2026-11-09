@@ -22,6 +22,8 @@
 
     <a href="{{ route('projects.create') }}">Crear proyecto</a>
 
+    <a href="{{ route('projects.create') }}">Cerrar sesión</a>
+
     @foreach ($projects as $project)
         <div>
             <h2>{{ $project->title }}</h2>
